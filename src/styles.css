@@ -1,0 +1,30 @@
+.day-name {
+  font-weight: bold;
+}
+
+.weather-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.temperature {
+  font-size: 1.2em;
+}
+/* styles.css */
+
+.weather-display {
+  display: flex; /* Display children in a row */
+  flex-wrap: wrap; /* Wrap items to next row if they exceed container width */
+  background-color: lightblue; /* Set background color to blue */
+  padding: 10px; /* Add some padding */
+}
+
+.day-container {
+  flex: 1; /* Each day container takes equal space */
+  margin: 5px; /* Add some margin between items */
+  padding: 10px; /* Add padding inside each item */
+  text-align: center; /* Center text */
+  background-color: white; /* Set background color to white */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for a raised effect */
+}
