@@ -29,8 +29,10 @@ export function injectWeatherDiv(divId?: string): void {
     document.createElement('div');
   div.id = divId || 'weatherDiv';
   div.innerHTML = `
-        <input type="text" id="cityInput" placeholder="Enter city name">
-        <button id="submitButton">Submit</button>
+        <div id="inputContainer">
+          <input type="text" id="cityInput" placeholder="Enter city name or coordinates">
+          <button id="submitButton">Submit</button>
+        </div>
         <div id="weatherDisplay" class="weather-display"></div>
     `;
   document.body.appendChild(div);
@@ -44,21 +46,37 @@ export function injectWeatherDiv(divId?: string): void {
   ) as HTMLDivElement;
 
   submitButton.addEventListener('click', async () => {
-    const city = cityInput.value;
-    const weatherData = await getWeatherData(city);
-    const averageTemps = calculateAverageTemperatures(weatherData);
+    const input = cityInput.value;
+    let weatherData = null;
+    if (input.includes(',')) {
+      // Coordinates input
+      const [lat, lon] = input
+        .split(',')
+        .map((coord) => parseFloat(coord.trim()));
+      weatherData = await getWeatherData({ lat, lon });
+    } else {
+      // City name input
+      weatherData = await getWeatherData(input);
+    }
+
     weatherDisplay.innerHTML = '';
-    for (const dayOfWeek in averageTemps) {
-      const dayContainer = document.createElement('div');
-      dayContainer.classList.add('day-container');
-      dayContainer.innerHTML = `
+    if (weatherData) {
+      weatherDisplay.classList.add('selected');
+      const averageTemps = calculateAverageTemperatures(weatherData);
+      for (const dayOfWeek in averageTemps) {
+        const dayContainer = document.createElement('div');
+        dayContainer.classList.add('day-container');
+        dayContainer.innerHTML = `
           <div class="day-name">${dayOfWeek.slice(0, 3)}</div>
           <div class="weather-icon">
               <img src="dist/assets/sun.png" alt="sun icon">
           </div>
           <div class="temperature">${averageTemps[dayOfWeek]}°C</div>
       `;
-      weatherDisplay.appendChild(dayContainer);
+        weatherDisplay.appendChild(dayContainer);
+      }
+    } else {
+      weatherDisplay.classList.remove('selected');
     }
   });
 }

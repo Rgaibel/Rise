@@ -1,3 +1,46 @@
+#inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Add some margin below the inputContainer */
+}
+
+#cityInput {
+  width: 40%; /* Set the width to 80% of the parent element */
+  padding: 10px; /* Add some padding inside the input box */
+  margin-bottom: 10px; /* Add margin below the input box */
+}
+
+#submitButton {
+  width: 40%; /* Set the width to 80% of the parent element */
+  padding: 10px; /* Add some padding inside the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.weather-display {
+  border: 1px solid #ccc;
+}
+
+.weather-display.selected {
+  background-color: lightblue;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day-container {
+  flex: 1;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .day-name {
   font-weight: bold;
 }
@@ -9,22 +52,4 @@
 
 .temperature {
   font-size: 1.2em;
-}
-/* styles.css */
-
-.weather-display {
-  display: flex; /* Display children in a row */
-  flex-wrap: wrap; /* Wrap items to next row if they exceed container width */
-  background-color: lightblue; /* Set background color to blue */
-  padding: 10px; /* Add some padding */
-}
-
-.day-container {
-  flex: 1; /* Each day container takes equal space */
-  margin: 5px; /* Add some margin between items */
-  padding: 10px; /* Add padding inside each item */
-  text-align: center; /* Center text */
-  background-color: white; /* Set background color to white */
-  border-radius: 5px; /* Add border radius for rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for a raised effect */
 }
