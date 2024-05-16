@@ -3,23 +3,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px; /* Add some margin below the inputContainer */
+  margin-bottom: 20px;
 }
 
 #cityInput {
-  width: 40%; /* Set the width to 80% of the parent element */
-  padding: 10px; /* Add some padding inside the input box */
-  margin-bottom: 10px; /* Add margin below the input box */
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 #submitButton {
-  width: 40%; /* Set the width to 80% of the parent element */
-  padding: 10px; /* Add some padding inside the button */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  width: 40%;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .weather-display {
-  border: 1px solid #ccc;
+  border: none;
 }
 
 .weather-display.selected {
