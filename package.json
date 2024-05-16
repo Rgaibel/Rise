@@ -1,0 +1,22 @@
+{
+  "name": "rise",
+  "version": "1.0.0",
+  "description": "Rise Interview Assignment",
+  "main": "./src/main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "typescript": "^4.0.0",
+    "ts-loader": "^9.0.0",
+    "style-loader": "^3.0.0",
+    "css-loader": "^6.0.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^5.0.0"
+  }
+}

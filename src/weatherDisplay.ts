@@ -4,7 +4,7 @@ import './styles.css';
 export function calculateAverageTemperatures(weatherData: any): any {
   const averageTemps: { [key: string]: { sum: number; count: number } } = {};
   weatherData.forecast.forecastday.forEach((item: any) => {
-    const date = new Date(item.date); // Convert date string to JavaScript date
+    const date = new Date(item.date);
     const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
     if (!averageTemps[dayOfWeek]) {
       averageTemps[dayOfWeek] = { sum: 0, count: 0 };
@@ -24,10 +24,13 @@ export function calculateAverageTemperatures(weatherData: any): any {
 }
 
 export function injectWeatherDiv(divId?: string): void {
-  const div =
-    document.getElementById(divId || 'weatherDiv') ||
-    document.createElement('div');
-  div.id = divId || 'weatherDiv';
+  let div = divId ? document.getElementById(divId) : null;
+  if (!div) {
+    div = document.createElement('div');
+    div.id = 'weatherDiv';
+    document.body.appendChild(div);
+  }
+
   div.innerHTML = `
         <div id="inputContainer">
           <input type="text" id="cityInput" placeholder="Enter city name or coordinates">
@@ -35,15 +38,10 @@ export function injectWeatherDiv(divId?: string): void {
         </div>
         <div id="weatherDisplay" class="weather-display"></div>
     `;
-  document.body.appendChild(div);
 
-  const cityInput = document.getElementById('cityInput') as HTMLInputElement;
-  const submitButton = document.getElementById(
-    'submitButton'
-  ) as HTMLButtonElement;
-  const weatherDisplay = document.getElementById(
-    'weatherDisplay'
-  ) as HTMLDivElement;
+  const cityInput = div.querySelector('#cityInput') as HTMLInputElement;
+  const submitButton = div.querySelector('#submitButton') as HTMLButtonElement;
+  const weatherDisplay = div.querySelector('#weatherDisplay') as HTMLDivElement;
 
   submitButton.addEventListener('click', async () => {
     const input = cityInput.value;
@@ -72,7 +70,7 @@ export function injectWeatherDiv(divId?: string): void {
               <img src="dist/assets/sun.png" alt="sun icon">
           </div>
           <div class="temperature">${averageTemps[dayOfWeek]}°C</div>
-      `;
+        `;
         weatherDisplay.appendChild(dayContainer);
       }
     } else {
