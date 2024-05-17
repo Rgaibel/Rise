@@ -5,27 +5,31 @@ This script allows users to enter a city name or coordinates and fetches the wea
 ## How to Use
 
 1. **Clone the Repository**:
-   git clone https://github.com/Rgaibel/Rise.git
+   ```git clone https://github.com/Rgaibel/Rise.git```
 
 Download the dist/bundle.js file from this repository.
 
 2. Include the Script in Your Webpage:
-   <script src="path/to/bundle.js" type="module"></script>
+   
+   ```<script src="path/to/bundle.js" type="module"></script>```
 
 3. Inject the Weather Display:
 
 To inject the weather display into a specific div, use the following code:
 
+```
 <div id="myWeatherDiv"></div>
 <script>
   injectWeatherDiv('myWeatherDiv');
 </script>
+```
 
 Note: If no div id is provided, the script will create a new div in the body:
-
+```
 <script>
   injectWeatherDiv();
 </script>
+```
 
 View the Weather Display: The script will display an input field where you can enter a city name or coordinates. Pressing the "Submit" button will show the average temperature for each day of the week for the specified location.
 
