@@ -14,7 +14,6 @@ export function calculateAverageTemperatures(weatherData: any): any {
   });
 
   const output: { [key: string]: number } = {};
-  // Calculate average temperature for each day
   for (const dayOfWeek in averageTemps) {
     output[dayOfWeek] = Math.round(
       averageTemps[dayOfWeek].sum / averageTemps[dayOfWeek].count
@@ -32,12 +31,14 @@ export function injectWeatherDiv(divId?: string): void {
   }
 
   div.innerHTML = `
-        <div id="inputContainer">
-          <input type="text" id="cityInput" placeholder="Enter city name or coordinates">
-          <button id="submitButton">Submit</button>
-        </div>
-        <div id="weatherDisplay" class="weather-display"></div>
-    `;
+    <div id="scriptContainer">
+      <div id="inputContainer">
+        <input type="text" id="cityInput" placeholder="Enter city name or coordinates">
+        <button id="submitButton">Submit</button>
+      </div>
+      <div id="weatherDisplay" class="weather-display"></div>
+    </div>
+  `;
 
   const cityInput = div.querySelector('#cityInput') as HTMLInputElement;
   const submitButton = div.querySelector('#submitButton') as HTMLButtonElement;
@@ -47,13 +48,11 @@ export function injectWeatherDiv(divId?: string): void {
     const input = cityInput.value;
     let weatherData = null;
     if (input.includes(',')) {
-      // Coordinates input
       const [lat, lon] = input
         .split(',')
         .map((coord) => parseFloat(coord.trim()));
       weatherData = await getWeatherData({ lat, lon });
     } else {
-      // City name input
       weatherData = await getWeatherData(input);
     }
 
@@ -67,7 +66,7 @@ export function injectWeatherDiv(divId?: string): void {
         dayContainer.innerHTML = `
           <div class="day-name">${dayOfWeek.slice(0, 3)}</div>
           <div class="weather-icon">
-              <img src="dist/assets/sun.png" alt="sun icon">
+            <img src="dist/assets/sun.png" alt="sun icon">
           </div>
           <div class="temperature">${averageTemps[dayOfWeek]}°C</div>
         `;

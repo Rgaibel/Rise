@@ -1,3 +1,3 @@
 import { injectWeatherDiv } from './weatherDisplay';
 
-injectWeatherDiv();
+(window as any).injectWeatherDiv = injectWeatherDiv;
